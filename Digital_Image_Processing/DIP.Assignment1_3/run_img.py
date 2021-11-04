@@ -31,6 +31,18 @@ def add_argument():
 IMG_FORMATS = ['jpg', 'jpeg', 'png']  # acceptable image suffixes
 VID_FORMATS = ['avi', 'mp4', 'gif']  # acceptable video suffixes
 
+# TASK CASE IN ASSIGNMENT.
+CASE = ['output',
+        'draw_hist',
+        'scale_histogram',
+        'histogram_equalizion',
+        'Median filter',
+        'Mean filter',
+        'Gauss filter',
+        'Sharp filter'] 
+
+# '' mean nothing task.
+
 # Built class Image
 class Image:
   """
@@ -111,9 +123,12 @@ def run():
   """
       case 0: Input: Image -> Output: cv2.imread() -> Type np.ndarray.
       case 1: Input: Image, bin -> Output: List histogram of image. 
-      case 2: Input: Image -> Output: Image after use median filter.
-      case 3: Input: Image -> Output: Image after use smoothing filter (Mean Filter, Gauss Filter)
-      case 4: Input: Image -> Output: Image after use sharpening filter (Laplacian filter)
+      case 2: Input: Image, src_range, dst_range -> Output: Image use scale histogram (Linear Transform)
+      case 3: Input: Image -> Output: Image with Histogram Equalizion
+      case 4: Input: Image -> Output: Image after use median filter.
+      case 5: Input: Image -> Output: Image after use smoothing filter (Mean Filter)
+      case 6: Input: Image -> Output: Image after use smoothing filter (Gauss Filter)
+      case 7: Input: Image -> Output: Image after use sharpening filter (Laplacian filter)
   """
   case = args.case
   # All case from 0 -> 6.
@@ -148,6 +163,9 @@ def run():
     new_img = mean_filter(img.img_np, filter_size=(5, 5))
     cv2.imwrite(img.name_img + '_mean' + '.png', new_img)
   elif case == 6:
+    new_img = gauss_filter(img.img_np, filter_size=(5, 5), sigma=1)
+    cv2.imwrite(img.name_img + '_gauss' + '.png', new_img)
+  elif case == 7:
     new_img = laplacian_filter(img.img_np)
     cv2.imwrite(img.name_img + '_sharp' + '.png', new_img)
   else:

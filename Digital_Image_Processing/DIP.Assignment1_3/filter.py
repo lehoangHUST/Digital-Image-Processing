@@ -51,11 +51,12 @@ def gauss_filter(img_np: np.ndarray, sigma: float, filter_size: tuple =(3, 3)):
     gauss = gen_gaussian_kernel(filter_size[0], sigma)
     new_img = img_np.copy()
 
+    pad = filter_size[0]//2
     for channel in range(img_np.shape[2]):
-        for i in range(1, img_np.shape[0] - 1):
-            for j in range(1, img_np.shape[1] - 1):
-                element_wise = img_np[i-1:i+2, j-1:j+2]*gauss
-                new_img[i, j, channel] =  np.sum(element_wise)
+        for i in range(pad, img_np.shape[0] - pad):
+            for j in range(pad, img_np.shape[1] - pad):
+                element_wise = img_np[i-pad:i+pad+1, j-pad:j+pad+1, channel]*gauss
+                new_img[i, j, channel] =  int(np.sum(element_wise))
 
     return new_img
 
