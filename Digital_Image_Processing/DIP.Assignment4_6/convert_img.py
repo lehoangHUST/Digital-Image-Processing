@@ -87,8 +87,10 @@ def hsv_to_rgb(h, s, v):
 
 
 if __name__ == '__main__':
-    img_hsv, img_rgb = read_file('./Endo/HMUH_01 201007_200226_BN103_008.jpg')
-    cv2.imshow('RGB->HSV', img_hsv)
-    cv2.imshow('HSV->RGB', img_rgb)
+    img = cv2.imread('C:/Users/Administrator/Documents/Nam4_Ki1/DIP/Digital_Image_Processing/DIP.Assignment1_3/input/Lena.png')
+    hsv = cv2.cvtColor(img, cv2.COLOR_RGB2HSV)
+    #img_hsv, img_rgb = read_file('C:/Users/Administrator/Documents/Nam4_Ki1/DIP/Digital_Image_Processing/DIP.Assignment1_3/input/Lena.png')
+    cv2.imshow('RGB->HSV', hsv)
+   # cv2.imshow('HSV->RGB', img_rgb)
     cv2.waitKey()
 

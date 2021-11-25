@@ -45,7 +45,6 @@ def ideal_mask_LPF(rows: int, cols: int, r: int):
     x, y = np.ogrid[:rows, :cols]
     mask_area = (x - center[0]) ** 2 + (y - center[1]) ** 2 <= r * r
     mask[mask_area] = 1
-    print(mask.shape)
     return mask
 
 
@@ -96,7 +95,7 @@ def show(src: np.ndarray, dst: np.ndarray, cut: int):
 
 
 if __name__ == '__main__':
-    src = read_file('./Endo/HMUH_01 201007_200226_BN103_008.jpg')
+    src = read_file('C:/Users/Administrator/Documents/Nam4_Ki1/DIP/Digital_Image_Processing/DIP.Assignment1_3/input/Lena.png')
     dft_shift = DFT(src)
     r = 50
     dst = inverse_DFT(gaussian_mask_HPF(src.shape[0], src.shape[1], r), dft_shift)
